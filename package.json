@@ -2,7 +2,7 @@
   "name": "farmaciaartemis",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "play": "nodemon start server.js"
   },
