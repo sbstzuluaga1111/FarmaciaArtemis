@@ -67,8 +67,8 @@ router.get('/ejercicio3', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const medicamentosCollection = db.collection('Medicamentos');
-        const comprasCollection = db.collection('Compras');
+        const medicamentosCollection = db.collection('medicamentos');
+        const comprasCollection = db.collection('compras');
        
         const medicamentosProveedorA = await medicamentosCollection.find({
             "proveedor.nombre": "ProveedorA"
@@ -95,7 +95,7 @@ router.get('/ejercicio4', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const recetasCollection = db.collection('Recetas');
+        const recetasCollection = db.collection('recetas');
 
         const result = await recetasCollection.find({
             fechaEmision: { $gt: new Date('2023-01-01') }
@@ -116,7 +116,7 @@ router.get('/ejercicio5', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const ventasCollection = db.collection('Ventas');
+        const ventasCollection = db.collection('ventas');
 
         const ventasParacetamol = await ventasCollection.find({
             "medicamentosVendidos.nombreMedicamento": "Paracetamol"
