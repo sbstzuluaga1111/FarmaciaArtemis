@@ -20,7 +20,6 @@ router.get('/', (req, res)=> {
     }
 });
 
-
 ///// Obtener todos los medicamentos con menos de 50 unidades en stock.
 
 router.get('/ejercicio1', async (req, res)=> {
@@ -67,7 +66,11 @@ router.get('/ejercicio3', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db(nombreBases);
+<<<<<<< HEAD
         const medicaColletion = db.collection('medicamentos');
+=======
+        const medicamentosCollection = db.collection('medicamentos');
+>>>>>>> 173dd57 (V7)
         const comprasCollection = db.collection('compras');
        
         const medicamentosProveedorA = await medicaColletion.find({
@@ -95,7 +98,11 @@ router.get('/ejercicio4', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db(nombreBases);
+<<<<<<< HEAD
         const ventasCollection = db.collection('ventas');
+=======
+        const recetasCollection = db.collection('recetas');
+>>>>>>> 173dd57 (V7)
 
         const result = await ventasCollection.find({
             fechaVenta: { $gt: new Date('2023-01-01') }
@@ -114,7 +121,7 @@ router.get('/ejercicio5', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const ventasCollection = db.collection('ventas');
 
         const ventasParacetamol = await ventasCollection.find({
@@ -144,8 +151,13 @@ router.get('/ejercicio6', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
+=======
+        const db = client.db(nombreBases);
+        const medicamentosCollection = db.collection('medicamentos');
+>>>>>>> 173dd57 (V7)
 
         const fechaLimite = new Date("2024-01-01T00:00:00Z");
 
@@ -167,6 +179,7 @@ router.get('/ejercicio7', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
         const ventasCollection = db.collection('ventas');
 
@@ -183,6 +196,10 @@ router.get('/ejercicio7', async (req,res)=>{
         ];
 
         const result = await ventasCollection.aggregate(total).toArray();
+=======
+        const db = client.db(nombreBases);
+        const colection = db.collection('medicamentos')
+>>>>>>> 173dd57 (V7)
 
         
         res.json(result);
@@ -200,7 +217,11 @@ router.get('/ejercicio8', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
+=======
+        const db = client.db(nombreBases);
+>>>>>>> 173dd57 (V7)
         const ventasCollection = db.collection('ventas');
 
         const ventas = await ventasCollection.find().toArray();
@@ -226,8 +247,13 @@ router.get('/ejercicio9', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
+=======
+        const db = client.db(nombreBases);
+        const medicamentosCollection = db.collection('medicamentos');
+>>>>>>> 173dd57 (V7)
         const ventasCollection = db.collection('ventas');
 
         const medicamentosVendidos = await ventasCollection.distinct('medicamentosVendidos.nombreMedicamento');
@@ -250,8 +276,13 @@ router.get('/ejercicio10', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
+=======
+        const db = client.db(nombreBases);
+        const medicamentosCollection = db.collection('medicamentos');
+>>>>>>> 173dd57 (V7)
 
         const medicamentoMasCaro = await medicaColletion.find()
             .sort({ precio: -1 })
@@ -272,8 +303,13 @@ router.get('/ejercicio11', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
+=======
+        const db = client.db(nombreBases);
+        const colection = db.collection('medicamentos')
+>>>>>>> 173dd57 (V7)
 
         const numeroMedicamentosPorProveedor = await medicaColletion.aggregate([
             {
@@ -297,29 +333,43 @@ router.get('/ejercicio12', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
+=======
+        const db = client.db(nombreBases);
+>>>>>>> 173dd57 (V7)
         const ventasCollection = db.collection('ventas');
 
         const ventasConParacetamol = await ventasCollection.find({
             "medicamentosVendidos.nombreMedicamento": "Paracetamol"
         }).toArray();
 
+<<<<<<< HEAD
         const pacientesConParacetamol = ventasConParacetamol.map((venta) => venta.paciente);
+=======
+        const pacientesConParacetamol = ventasConParacetamol.map(venta => venta.paciente);
+>>>>>>> 173dd57 (V7)
 
         res.json(pacientesConParacetamol);
         client.close();
     } catch (e) {
+<<<<<<< HEAD
         console.error(e);
         res.status(500).json("Error en el servidor");
+=======
+        console.log(e)
+        res.status(500).json("nada :c")
+>>>>>>> 173dd57 (V7)
     }
 });
 
-///// Proveedores que no han vendido medicamentos en el último año.
+///// Provedores que no han vendido medicamentos en el último año.
 
 router.get('/ejercicio13', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
+<<<<<<< HEAD
         const db = client.db('farmaciaCampus');
         const medicamentosCollection = db.collection('medicamentos');
         const ventasCollection = db.collection('ventas');
@@ -332,6 +382,25 @@ router.get('/ejercicio13', async (req, res) => {
         });
 
         res.json(proveedoresNoVendieron);
+=======
+        const db = client.db(nombreBases);
+        const proveedoresCollection = db.collection('provedores');
+        const comprasCollection = db.collection('compras');
+
+        const fechaActual = new Date();
+        const fechaHaceUnAnio = new Date();
+        fechaHaceUnAnio.setFullYear(fechaHaceUnAnio.getFullYear() - 1);
+
+        const proveedoresConCompras = await comprasCollection.distinct('proveedor.nombre', {
+            fechaCompra: { $gte: fechaHaceUnAnio, $lte: fechaActual }
+        });
+
+        const proveedoresSinCompras = await proveedoresCollection.find({
+            nombre: { $nin: proveedoresConCompras }
+        }).toArray();
+
+        res.json(proveedoresSinCompras);
+>>>>>>> 173dd57 (V7)
         client.close();
     } catch (e) {
         console.error(e);
@@ -341,203 +410,399 @@ router.get('/ejercicio13', async (req, res) => {
 
 ///// Obtener el total de medicamentos vendidos en marzo de 2023.
 
-router.get('/ejercicio14', async (req,res)=>{
+router.get('/ejercicio14', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const db = client.db(nombreBases);
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const fechaInicioMarzo2023 = new Date('2023-03-01');
+        const fechaFinMarzo2023 = new Date('2023-03-31');
+
+        const ventasMarzo2023 = await ventasCollection.find({
+            fechaVenta: { $gte: fechaInicioMarzo2023, $lte: fechaFinMarzo2023 }
+        }).toArray();
+
+        let totalMedicamentosVendidos = 0;
+        ventasMarzo2023.forEach((venta) => {
+            venta.medicamentosVendidos.forEach((medicamento) => {
+                totalMedicamentosVendidos += medicamento.cantidadVendida;
+            });
+        });
+
+        res.json({ totalMedicamentosVendidos });
         client.close();
 
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Obtener el medicamento menos vendido en 2023.
 
-router.get('/ejercicio15', async (req,res)=>{
+router.get('/ejercicio15', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const db = client.db(nombreBases);
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const fechaInicio2023 = new Date('2023-01-01');
+        const fechaFin2023 = new Date('2023-12-31');
+
+        const ventas2023 = await ventasCollection.find({
+            fechaVenta: { $gte: fechaInicio2023, $lte: fechaFin2023 }
+        }).toArray();
+
+        const medicamentosVendidos = {};
+
+        ventas2023.forEach((venta) => {
+            venta.medicamentosVendidos.forEach((medicamento) => {
+                const nombreMedicamento = medicamento.nombreMedicamento;
+                if (!medicamentosVendidos[nombreMedicamento]) {
+                    medicamentosVendidos[nombreMedicamento] = 0;
+                }
+                medicamentosVendidos[nombreMedicamento] += medicamento.cantidadVendida;
+            });
+        });
+
+        let medicamentoMenosVendido = null;
+        let cantidadMenosVendida = Infinity;
+
+        for (const nombreMedicamento in medicamentosVendidos) {
+            if (medicamentosVendidos.hasOwnProperty(nombreMedicamento)) {
+                const cantidadVendida = medicamentosVendidos[nombreMedicamento];
+                if (cantidadVendida < cantidadMenosVendida) {
+                    medicamentoMenosVendido = nombreMedicamento;
+                    cantidadMenosVendida = cantidadVendida;
+                }
+            }
+        }
+
+        res.json({ medicamentoMenosVendido, cantidadMenosVendida });
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Ganancia total por proveedor en 2023 (asumiendo un campo precioCompra en Compras).
 
-router.get('/ejercicio16', async (req,res)=>{
+router.get('/ejercicio16', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const db = client.db(nombreBases);
+        const comprasCollection = db.collection('compras');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const fechaInicio2023 = new Date('2023-01-01');
+        const fechaFin2023 = new Date('2023-12-31');
+
+        const gananciaPorProveedor = await comprasCollection.aggregate([
+            {
+                $match: {
+                    fechaCompra: { $gte: fechaInicio2023, $lte: fechaFin2023 }
+                }
+            },
+            {
+                $unwind: "$medicamentosComprados"
+            },
+            {
+                $lookup: {
+                    from: "medicamentos",
+                    localField: "medicamentosComprados.nombreMedicamento",
+                    foreignField: "nombre",
+                    as: "medicamento"
+                }
+            },
+            {
+                $unwind: "$medicamento"
+            },
+            {
+                $group: {
+                    _id: "$medicamento.proveedor.nombre",
+                    gananciaTotal: {
+                        $sum: {
+                            $multiply: ["$medicamentosComprados.cantidadComprada", { $subtract: ["$medicamento.precioVenta", "$medicamento.precioCompraUnidad"] }]
+                        }
+                    }
+                }
+            }
+        ]).toArray();
+
+        res.json(gananciaPorProveedor);
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
+
 
 ///// Promedio de medicamentos comprados por venta.
 
-router.get('/ejercicio17', async (req,res)=>{
+router.get('/ejercicio17', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const db = client.db(nombreBases);
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const promedioMedicamentosPorVenta = await ventasCollection.aggregate([
+            {
+                $unwind: "$medicamentosVendidos"
+            },
+            {
+                $group: {
+                    _id: "$_id",
+                    totalMedicamentosComprados: { $sum: "$medicamentosVendidos.cantidadVendida" }
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    promedioMedicamentosPorVenta: { $avg: "$totalMedicamentosComprados" }
+                }
+            }
+        ]).toArray();
+
+        if (promedioMedicamentosPorVenta.length > 0) {
+            res.json(promedioMedicamentosPorVenta[0].promedioMedicamentosPorVenta);
+        } else {
+            res.json(0);
+        }
+
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Cantidad de ventas realizadas por cada empleado en 2023.
 
-router.get('/ejercicio18', async (req,res)=>{
+router.get('/ejercicio18', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const db = client.db(nombreBases);
+        const ventasCollection = db.collection('ventas');
+        const empleadosCollection = db.collection('empleados');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const fechaInicio2023 = new Date('2023-01-01');
+        const fechaFin2023 = new Date('2023-12-31');
+
+        const ventasPorEmpleado2023 = await ventasCollection.aggregate([
+            {
+                $match: {
+                    fechaVenta: { $gte: fechaInicio2023, $lte: fechaFin2023 }
+                }
+            },
+            {
+                $group: {
+                    _id: "$empleado.nombre",
+                    totalVentas: { $sum: 1 }
+                }
+            }
+        ]).toArray();
+
+        const empleados = await empleadosCollection.find({}).toArray();
+
+        const ventasPorEmpleado = {};
+
+        empleados.forEach((empleado) => {
+            ventasPorEmpleado[empleado.nombre] = 0;
+        });
+
+        ventasPorEmpleado2023.forEach((venta) => {
+            const empleadoNombre = venta._id;
+            if (ventasPorEmpleado.hasOwnProperty(empleadoNombre)) {
+                ventasPorEmpleado[empleadoNombre] = venta.totalVentas;
+            }
+        });
+
+        res.json(ventasPorEmpleado);
         client.close();
 
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Obtener todos los medicamentos que expiren en 2024.
 
-router.get('/ejercicio19', async (req,res)=>{
+router.get('/ejercicio19', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const medicamentosCollection = db.collection('medicamentos');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const fechaInicio2024 = new Date('2024-01-01');
+        const fechaFin2024 = new Date('2024-12-31');
+
+        const medicamentos2024 = await medicamentosCollection.find({
+            "fechaExpiracion": {
+                $gte: fechaInicio2024,
+                $lte: fechaFin2024
+            }
+        }).toArray();
+
+        res.json(medicamentos2024);
         client.close();
 
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Empleados que hayan hecho más de 5 ventas en total.
 
-router.get('/ejercicio20', async (req,res)=>{
+router.get('/ejercicio20', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const empleadosCollection = db.collection('empleados');
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const empleadosConVentas = await empleadosCollection.aggregate([
+            {
+                $lookup: {
+                    from: "ventas",
+                    localField: "nombre",
+                    foreignField: "empleado.nombre",
+                    as: "ventas"
+                }
+            },
+            {
+                $project: {
+                    nombre: 1,
+                    totalVentas: { $size: "$ventas" }
+                }
+            },
+            {
+                $match: {
+                    totalVentas: { $gt: 5 }
+                }
+            }
+        ]).toArray();
+
+        res.json(empleadosConVentas);
         client.close();
 
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("Error en el servidor");
     }
-})
+});
+
 
 ///// Medicamentos que no han sido vendidos nunca.
 
-router.get('/ejercicio21', async (req,res)=>{
+router.get('/ejercicio21', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const medicamentosCollection = db.collection('medicamentos');
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const medicamentosVendidos = await ventasCollection.distinct('medicamentosVendidos.nombreMedicamento');
+
+        const medicamentosNoVendidos = await medicamentosCollection.find({
+            nombre: { $nin: medicamentosVendidos }
+        }).toArray();
+
+        res.json(medicamentosNoVendidos);
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Paciente que ha gastado más dinero en 2023.
 
-router.get('/ejercicio22', async (req,res)=>{
+router.get('/ejercicio22', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const medicamentosCollection = db.collection('medicamentos');
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const ventas2023 = await ventasCollection.find({
+            fechaVenta: {
+                $gte: new Date('2023-01-01'),
+                $lte: new Date('2023-12-31')
+            }
+        }).toArray();
+
+        const gastosPorPaciente = {};
+
+        ventas2023.forEach(venta => {
+            const paciente = venta.paciente.nombre;
+            const totalVenta = venta.medicamentosVendidos.reduce((total, med) => total + (med.cantidadVendida * med.precio), 0);
+
+            if (gastosPorPaciente[paciente]) {
+                gastosPorPaciente[paciente] += totalVenta;
+            } else {
+                gastosPorPaciente[paciente] = totalVenta;
+            }
+        });
+
+        const pacienteMasGastador = Object.keys(gastosPorPaciente).reduce((a, b) => gastosPorPaciente[a] > gastosPorPaciente[b] ? a : b);
+
+        res.json({ paciente: pacienteMasGastador, gastoTotal: gastosPorPaciente[pacienteMasGastador] });
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
+
 
 ///// Empleados que no han realizado ninguna venta en 2023.
 
-router.get('/ejercicio23', async (req,res)=>{
+router.get('/ejercicio23', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
         const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const empleadosCollection = db.collection('empleados');
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const empleados = await empleadosCollection.find({}).toArray();
+
+        const empleadosSinVentas2023 = [];
+
+        for (const empleado of empleados) {
+            const ventasEmpleado2023 = await ventasCollection.find({
+                "empleado.nombre": empleado.nombre,
+                fechaVenta: {
+                    $gte: new Date('2023-01-01'),
+                    $lte: new Date('2023-12-31')
+                }
+            }).toArray();
+
+            if (ventasEmpleado2023.length === 0) {
+                empleadosSinVentas2023.push(empleado);
+            }
+        }
+
+        res.json(empleadosSinVentas2023);
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("nada :c");
     }
-})
+});
 
 ///// Proveedor que ha suministrado más medicamentos en 2023.
 
@@ -545,7 +810,7 @@ router.get('/ejercicio24', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -565,7 +830,7 @@ router.get('/ejercicio25', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -585,7 +850,7 @@ router.get('/ejercicio26', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -605,7 +870,7 @@ router.get('/ejercicio27', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -625,7 +890,7 @@ router.get('/ejercicio28', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -645,7 +910,7 @@ router.get('/ejercicio29', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -665,7 +930,7 @@ router.get('/ejercicio30', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -685,7 +950,7 @@ router.get('/ejercicio31', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -705,7 +970,7 @@ router.get('/ejercicio32', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -725,7 +990,7 @@ router.get('/ejercicio33', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -745,7 +1010,7 @@ router.get('/ejercicio34', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -765,7 +1030,7 @@ router.get('/ejercicio35', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -785,7 +1050,7 @@ router.get('/ejercicio36', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
         const result = await colection.distinct("proveedor")
@@ -801,23 +1066,36 @@ router.get('/ejercicio36', async (req,res)=>{
 
 ///// Empleados que no realizaron ventas en abril de 2023.
 
-router.get('/ejercicio37', async (req,res)=>{
+router.get('/ejercicio37', async (req, res) => {
     try {
-        const client = new MongoClient(bases)
+        const client = new MongoClient(bases);
         await client.connect();
-        const db = client.db('farmaciaCampus');
-        const colection = db.collection('medicamentos')
+        const db = client.db(nombreBases);
+        const ventasCollection = db.collection('ventas');
 
-        const result = await colection.distinct("proveedor")
-        
-        res.json(result);
+        const fechaInicio = new Date('2023-04-01');
+        const fechaFin = new Date('2023-04-30');
+
+        const ventasAbril = await ventasCollection.find({
+            fechaVenta: { $gte: fechaInicio, $lte: fechaFin }
+        }).toArray();
+
+        const empleadosConVentas = new Set();
+        ventasAbril.forEach((venta) => {
+            empleadosConVentas.add(venta.empleado.nombre);
+        });
+
+        const todosLosEmpleados = await ventasCollection.distinct('empleado.nombre');
+
+        const empleadosSinVentas = todosLosEmpleados.filter((empleado) => !empleadosConVentas.has(empleado));
+
+        res.json(empleadosSinVentas);
         client.close();
-
     } catch (e) {
-        console.log(e)
-        res.status(404).json("nada :c")
+        console.error(e);
+        res.status(500).json("Error en el servidor");
     }
-})
+});
 
 ///// Medicamentos con un precio mayor a 50 y un stock menor a 100.
 
@@ -825,12 +1103,11 @@ router.get('/ejercicio38', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-        const db = client.db('farmaciaCampus');
+        const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
 
-        const x = Number
-
-        const result = await colection.find({"stock":{'$lt':100}}).toArray()
+        const result1 = await colection.find({"stock":{'$lt':100}}).toArray()
+        const result = result1.filter(elelemt   =>  elelemt.precio >= 50)
         
         res.json(result);
         client.close();
@@ -840,6 +1117,5 @@ router.get('/ejercicio38', async (req,res)=>{
         res.status(404).json("nada :c")
     }
 })
-
 
 module.exports = router;
