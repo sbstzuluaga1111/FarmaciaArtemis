@@ -66,11 +66,11 @@ router.get('/ejercicio3', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db(nombreBases);
-<<<<<<< HEAD
+
         const medicaColletion = db.collection('medicamentos');
-=======
+
         const medicamentosCollection = db.collection('medicamentos');
->>>>>>> 173dd57 (V7)
+
         const comprasCollection = db.collection('compras');
        
         const medicamentosProveedorA = await medicaColletion.find({
@@ -98,11 +98,11 @@ router.get('/ejercicio4', async (req, res) => {
         const client = new MongoClient(bases);
         await client.connect();
         const db = client.db(nombreBases);
-<<<<<<< HEAD
+
         const ventasCollection = db.collection('ventas');
-=======
+
         const recetasCollection = db.collection('recetas');
->>>>>>> 173dd57 (V7)
+
 
         const result = await ventasCollection.find({
             fechaVenta: { $gt: new Date('2023-01-01') }
@@ -151,13 +151,13 @@ router.get('/ejercicio6', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
-=======
+
         const db = client.db(nombreBases);
         const medicamentosCollection = db.collection('medicamentos');
->>>>>>> 173dd57 (V7)
+
 
         const fechaLimite = new Date("2024-01-01T00:00:00Z");
 
@@ -179,7 +179,7 @@ router.get('/ejercicio7', async (req,res)=>{
     try {
         const client = new MongoClient(bases)
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
         const ventasCollection = db.collection('ventas');
 
@@ -196,10 +196,10 @@ router.get('/ejercicio7', async (req,res)=>{
         ];
 
         const result = await ventasCollection.aggregate(total).toArray();
-=======
+
         const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
->>>>>>> 173dd57 (V7)
+
 
         
         res.json(result);
@@ -217,11 +217,11 @@ router.get('/ejercicio8', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
-=======
+
         const db = client.db(nombreBases);
->>>>>>> 173dd57 (V7)
+
         const ventasCollection = db.collection('ventas');
 
         const ventas = await ventasCollection.find().toArray();
@@ -247,13 +247,13 @@ router.get('/ejercicio9', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
-=======
+
         const db = client.db(nombreBases);
         const medicamentosCollection = db.collection('medicamentos');
->>>>>>> 173dd57 (V7)
+
         const ventasCollection = db.collection('ventas');
 
         const medicamentosVendidos = await ventasCollection.distinct('medicamentosVendidos.nombreMedicamento');
@@ -276,13 +276,13 @@ router.get('/ejercicio10', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
-=======
+
         const db = client.db(nombreBases);
         const medicamentosCollection = db.collection('medicamentos');
->>>>>>> 173dd57 (V7)
+
 
         const medicamentoMasCaro = await medicaColletion.find()
             .sort({ precio: -1 })
@@ -303,13 +303,13 @@ router.get('/ejercicio11', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
         const medicaColletion = db.collection('medicamentos');
-=======
+
         const db = client.db(nombreBases);
         const colection = db.collection('medicamentos')
->>>>>>> 173dd57 (V7)
+
 
         const numeroMedicamentosPorProveedor = await medicaColletion.aggregate([
             {
@@ -333,33 +333,33 @@ router.get('/ejercicio12', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
-=======
+
         const db = client.db(nombreBases);
->>>>>>> 173dd57 (V7)
+
         const ventasCollection = db.collection('ventas');
 
         const ventasConParacetamol = await ventasCollection.find({
             "medicamentosVendidos.nombreMedicamento": "Paracetamol"
         }).toArray();
 
-<<<<<<< HEAD
+
         const pacientesConParacetamol = ventasConParacetamol.map((venta) => venta.paciente);
-=======
+
         const pacientesConParacetamol = ventasConParacetamol.map(venta => venta.paciente);
->>>>>>> 173dd57 (V7)
+
 
         res.json(pacientesConParacetamol);
         client.close();
     } catch (e) {
-<<<<<<< HEAD
+
         console.error(e);
         res.status(500).json("Error en el servidor");
-=======
+
         console.log(e)
         res.status(500).json("nada :c")
->>>>>>> 173dd57 (V7)
+
     }
 });
 
@@ -369,7 +369,7 @@ router.get('/ejercicio13', async (req, res) => {
     try {
         const client = new MongoClient(bases);
         await client.connect();
-<<<<<<< HEAD
+
         const db = client.db('farmaciaCampus');
         const medicamentosCollection = db.collection('medicamentos');
         const ventasCollection = db.collection('ventas');
@@ -382,7 +382,7 @@ router.get('/ejercicio13', async (req, res) => {
         });
 
         res.json(proveedoresNoVendieron);
-=======
+
         const db = client.db(nombreBases);
         const proveedoresCollection = db.collection('provedores');
         const comprasCollection = db.collection('compras');
@@ -400,7 +400,7 @@ router.get('/ejercicio13', async (req, res) => {
         }).toArray();
 
         res.json(proveedoresSinCompras);
->>>>>>> 173dd57 (V7)
+
         client.close();
     } catch (e) {
         console.error(e);
